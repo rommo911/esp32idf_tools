@@ -1,0 +1,198 @@
+menu ID_TOOLS_COMPONENTS
+    menu "https ota Configuration"
+        config OTA_TASK_PRIORITY
+                int "task priority"
+                default 2
+                range 1 20
+                help
+                    OTA service task priority.
+        config OTA_TASK_STACK_SIZE
+                int "task stack size"
+                default 8192
+                range 2048 8192
+                help
+                    OTA service task stack size.
+        config OTA_TASK_CORE
+                int "task core"
+                default 1
+                range 0 1
+                help
+                    OTA task core.
+        config OTA_HTTPS_DEFAULT_PORT
+            int "OTA HTTPS default port"
+            default 443
+            range 20 9999
+            help
+                logger task core.
+
+        config OTA_BUFFER_SIZE
+            int "buffer size"
+            default 4096
+            range 1024 8192
+            help
+                OTA_BUFFER_SIZE.
+        config OTA_DELAY_BEFORE_REBOOT_MS
+            int "delay before reboot (after flash new fw) ms"
+            default 3000
+            range 1 10000
+            help
+                OTA_DELAY_BEFORE_REBOOT_MS.            
+        config OTA_RECV_TIMEOUT_MS
+            int "http ota recieve timeout"
+            default 4000
+            range 1000 10000
+            help
+                OTA_RECV_TIMEOUT_MS.    
+        config OTA_DEFAULT_CHECK_DELAY_MINUTES
+            int "default check delay in minutes"
+            default 600
+            range 10 1200
+            help
+                OTA_DEFAULT_CHECK_DELAY_MINUTES.   
+    endmenu
+
+    menu "socket ota Configuration"
+
+    config OTA_SOCKET_TASK_PRIORITY
+            int "task priority"
+            default 2
+            range 1 20
+            help
+                OTA service task priority.
+    config OTA_SOCKET_TASK_STACK_SIZE
+            int "stack size"
+            default 8192
+            range 2048 8192
+            help
+                OTA_SOCKET service task stack size.
+    config OTA_SOCKET_TASK_CORE
+            int "task core"
+            default 1
+            range 0 1
+            help
+                logger task core.
+
+    config OTA_SOCKET_DEFAULT_PORT
+            int "default port"
+            default 443
+            range 20 9999
+            help
+                logger task core.
+
+
+endmenu
+
+menu "my tasks "
+
+    config BOOT_DEFAULT_NUM_REBOOT_FACTORY_RESTORE 
+        int "default number of reboots to initiate a factory reset"
+        default 4
+        range 2 10
+        help 
+            none     
+            
+    config TASK_DEFAULT_STACK
+            int "task default stack size"
+            default 2048
+            range 512 8192
+            help
+                STUFF.
+    config TASK_DEFAULT_PRIORITY 
+            int "task default priority"
+            default 1 
+            range 0 20
+            help 
+                none             
+endmenu
+
+menu "my mqtt Configuration"
+
+    config ESP_TLS_SKIP_SERVER_CERT_VERIFY
+            bool "ESP_TLS_SKIP_SERVER_CERT_VERIFY"
+            default y
+            help 
+                ESP_TLS_SKIP_SERVER_CERT_VERIFY
+    config MQTT_DEFAULT_HOSTNAME
+            string "host name"
+            default "ESP-RAMI"
+            help 
+                MQTT_DEFAULT_HOSTNAME
+    config MQTT_DEFAULT_LW_MSG
+            string "last will message string"
+            default "offline"
+            help 
+                MQTT_DEFAULT_LW_MSG
+    config MQTT_DEFAULT_LW_MSG_QOS
+            int "last will message QoS"
+            default 1
+            range 0 3
+            help 
+                MQTT_DEFAULT_LW_MSG_QOS
+    config MQTT_DEFAULT_BUFFER_SIZE
+            int "Buffer Size"
+            default 1024
+            range 512 4096
+            help 
+                MQTT_BUFFER_SIZE
+endmenu
+
+menu "Rotary encoders"
+
+    config RE_MAX
+        int "Maximum number of rotary encoders"
+        default 1
+            
+    config RE_INTERVAL_US
+        int "Polling interval, us"
+        default 1000
+        
+    config RE_BTN_DEAD_TIME_US
+        int "Button dead time, us"
+        default 10000
+            
+    choice RE_BTN_PRESSED_LEVEL
+        prompt "Logical level on pressed button"
+        config RE_BTN_PRESSED_LEVEL_0
+            bool "0"
+        config RE_BTN_PRESSED_LEVEL_1
+            bool "1"
+    endchoice
+    
+    config RE_BTN_LONG_PRESS_TIME_US
+        int "Long press timeout, us"
+        default 500000
+
+endmenu
+    
+menu "my Ambient sensor Configuration"
+
+    config AMBIENT_SENSOR_DEFAULT_SMOOTHING_FACTOR
+            int "DEFAULT number of samples in one ADC cycle (oversampling)"
+            default 10
+            range 5 30
+            help
+                Define the oversampling number of samples.
+    
+    config AMBIENT_SENSOR_DEFAULT_DELAY
+            int "Default Delay for automatic ambient refresh"
+            default 500
+            range 100 5000
+            help
+                delay of the automatic ambient refresh (read adc).
+    
+    config AMBIENT_SENSOR_MIN_TASK_DELAY
+            int "Miminum Allowed Delay for automatic ambient refresh"
+            default 1
+            range 1 10
+            help
+                Miminum Allowed Delay for automatic ambient refresh.
+    
+    config AMBIENT_SENSOR_TASK_DELAY_MAX
+            int "Maximum Allowed Delay for automatic ambient refresh"
+            default 5
+            range 2 20
+            help
+                Maximum Allowed Delay for automatic ambient refresh.
+    endmenu
+
+endmenu
